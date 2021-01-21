@@ -1,0 +1,12 @@
+[
+  {
+    "device": {
+      "Smartphone": 0.0012,
+      "Tablet": 0.003,
+      "Laptop": 0.022,
+      "Television (50” LED)": 0.12
+    },
+    "network": {"WiFi": 0.01821, "4G": 0.01821},
+    "country": {"World": 463}
+  }
+]
