@@ -5,7 +5,13 @@ import Form from "./Form.js";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { device: 0, network: 0, country: 463, emissions: 0 };
+    this.state = {
+      device: 0,
+      network: 0,
+      country: 463,
+      hours: 0,
+      emissions: null,
+    };
   }
 
   onChange(field, value) {
@@ -13,11 +19,16 @@ class App extends Component {
   }
 
   setEmissions() {
-    // this.setState({ emissions: newEmission });
+    let newEmission =
+      this.state.device +
+      this.state.network * (this.state.hours * this.state.country);
+    console.log(newEmission, "here");
+    console.log(this.state, "hereeeee");
+
+    this.setState({ emissions: newEmission });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <div className="container">
@@ -30,7 +41,9 @@ class App extends Component {
               setEmissions={this.setEmissions.bind(this)}
             ></Form>
           </div>
-          <div className="row">Data Here</div>
+          <div className="row">
+            {this.state.emissions ? this.state.emissions : null}
+          </div>
         </div>
       </div>
     );

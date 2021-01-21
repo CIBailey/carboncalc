@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import data from "./data.json";
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   onFieldChange(event) {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
     this.props.onChange(fieldName, fieldValue);
+  }
+
+  onCalculate() {
+    this.props.setEmissions();
   }
 
   render() {
@@ -57,25 +61,11 @@ class Form extends Component {
               })}
             </select>
           </label>
-          <select
-            requiredname="network"
-            onChange={this.onFieldChange.bind(this)}
-          >
-            <option value={data[0].country.World} name="country"></option>
-          </select>
-          <button
-            value="Calculate"
-            onClick={this.props.setEmissions()}
-          ></button>
         </form>
+        <button onClick={this.onCalculate.bind(this)}>Calculate</button>
       </div>
     );
   }
 }
 
 export default Form;
-
-// $(document).ready(function () {
-//   console.log("ready");
-//   $("[name='network']").trigger("change");
-// });
