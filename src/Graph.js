@@ -12,8 +12,13 @@ import {
 class Graph extends Component {
   render() {
     const formatData = [
-      { y: "Your Emissions", x: this.props.dataGraph.emissions },
-      { y: "Boiling a kettle", x: 34 },
+      {
+        y: "Your Emissions",
+        x: this.props.dataGraph.emissions,
+        xOffset: -10,
+        yOffset: 6,
+      },
+      { y: "Boiling a kettle", x: 34, xOffset: -10, yOffset: -10 },
     ];
 
     const BarSeries = HorizontalBarSeries;
