@@ -1,4 +1,4 @@
-[
+
   {
     "device": {
       "Smartphone": 0.0012,
@@ -6,7 +6,6 @@
       "Laptop": 0.022,
       "Television (50” LED)": 0.12
     },
-    "network": {"WiFi": 0.01821, "4G": 0.01821},
+    "network": {"WiFi": 0.01821, "4G": 0.01853},
     "country": {"World": 463}
   }
-]

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import data from "./data.json";
 
 class Form extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.onCalculate = this.onCalculate.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
+  }
 
   onFieldChange(event) {
     const fieldName = event.target.name;
@@ -18,51 +20,72 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="App">
-        <form>
-          <label>
-            Hours:
-            <input
-              required
-              type="number"
-              name="hours"
-              onChange={this.onFieldChange.bind(this)}
-            />
-          </label>
-          <label>
-            Device Type:
-            <select
-              required
-              name="device"
-              onChange={this.onFieldChange.bind(this)}
-            >
-              {Object.entries(data[0].device).map(([key, value]) => {
-                return (
-                  <option value={value} key={key}>
-                    {key}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
-          <label>
-            Network Type:
-            <select
-              required
-              name="network"
-              onChange={this.onFieldChange.bind(this)}
-            >
-              {Object.entries(data[0].network).map(([key, value]) => {
-                return (
-                  <option value={value} key={key}>
-                    {key}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
+      <div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.onCalculate();
+          }}
+        >
+          <div className="row">
+            <div className=" col-sm">
+              <label>
+                Hours:
+                <input
+                  className="form-control form-control-lg"
+                  required
+                  type="number"
+                  name="hours"
+                  onChange={this.onFieldChange}
+                />
+              </label>
+            </div>
+            <div className=" col-sm">
+              <label>
+                Device:
+                <select
+                  className="custom-select custom-select-lg"
+                  required
+                  name="device"
+                  onChange={this.onFieldChange}
+                >
+                  {Object.entries(data.device).map(([key, value]) => {
+                    return (
+                      <option value={value} key={key}>
+                        {key}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            </div>
+            <div className=" col-sm">
+              <label>
+                Network:
+                <select
+                  className="custom-select custom-select-lg"
+                  required
+                  name="network"
+                  onChange={this.onFieldChange}
+                >
+                  {Object.entries(data.network).map(([key, value]) => {
+                    return (
+                      <option value={value} key={key}>
+                        {key}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            </div>
+            <div>
+              {" "}
+              <button type="submit" className="btn btn-primary btn-lg">
+                Calculate
+              </button>
+            </div>
+          </div>
         </form>
-        <button onClick={this.onCalculate.bind(this)}>Calculate</button>
       </div>
     );
   }

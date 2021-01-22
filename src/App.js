@@ -1,30 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
 import Form from "./Form.js";
+import Graph from "./Graph.js";
+import data from "./data.json";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      device: 0,
-      network: 0,
-      country: 463,
+      device: Object.values(data.device)[0],
+      network: Object.values(data.network)[0],
+      country: Object.values(data.country)[0],
       hours: 0,
       emissions: null,
     };
   }
 
   onChange(field, value) {
-    this.setState({ [field]: value });
+    this.setState({ [field]: Number(value) });
   }
 
   setEmissions() {
-    let newEmission =
-      this.state.device +
-      this.state.network * (this.state.hours * this.state.country);
-    console.log(newEmission, "here");
-    console.log(this.state, "hereeeee");
-
+    const newEmission =
+      (this.state.device + this.state.network) *
+      (this.state.hours * this.state.country);
     this.setState({ emissions: newEmission });
   }
 
@@ -33,7 +32,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <h1 className="title">Carbon Emissons Calculator</h1>
+            <h1 className="title">Calculate your emissions</h1>
           </div>
           <div className="row">
             <Form
@@ -42,7 +41,15 @@ class App extends Component {
             ></Form>
           </div>
           <div className="row">
-            {this.state.emissions ? this.state.emissions : null}
+            <div id="tagline">
+              Breakdown of CO2 emissions from 1 hour of streaming, World (2019)
+            </div>
+          </div>
+          <div className="row">
+            <div id="unit">g CO2-eq</div>
+          </div>
+          <div className="row">
+            <Graph dataGraph={this.state}></Graph>
           </div>
         </div>
       </div>
