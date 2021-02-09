@@ -16,7 +16,6 @@
     "react-vis": "^1.11.7",
     "web-vitals": "^0.2.4",
     "node": "^12.x"
-
   },
   "scripts": {
     "start": "react-scripts start",
